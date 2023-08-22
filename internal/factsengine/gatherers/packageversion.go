@@ -85,6 +85,8 @@ func (g *PackageVersionGatherer) Gather(factsRequests []entities.FactRequest) ([
 		}
 
 		if requestedVersion != "" {
+			// comparisonResult := 1
+			// var err *entities.FactGatheringError
 			comparisonResult, err := executeZypperVersionCmpCommand(g.executor, installedVersions[0].Version, requestedVersion)
 			if err != nil {
 				fact = entities.NewFactGatheredWithError(factReq, err)

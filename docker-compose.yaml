@@ -10,6 +10,20 @@ services:
         - rabbitmq-data:/var/lib/rabbitmq/
         - rabbitmq-logs:/var/log/rabbitmq/
 
+  sles:
+    image: registry.suse.com/suse/sle15:15.4.27.11.31
+    # image: opensuse/leap:15.4
+    command: ["sleep","infinity"]
+    volumes:
+      - ./trento-agent:/usr/bin/trento-agent
+  
+  leap:
+    # image: registry.suse.com/suse/sle15:15.4.27.11.31
+    image: opensuse/leap:15.4
+    command: ["sleep","infinity"]
+    volumes:
+      - ./trento-agent:/usr/bin/trento-agent
+
 volumes:
   rabbitmq-data:
   rabbitmq-logs:

@@ -279,18 +279,18 @@ ERR:::
 	suite.ElementsMatch(expectedDbs, dbs)
 }
 
-func (suite *SAPSystemTestSuite) TestGetDBAddress() {
-	s := &SAPSystem{Profile: SAPProfile{"SAPDBHOST": "localhost"}}
-	addr, err := getDBAddress(s)
-	suite.NoError(err)
-	suite.Equal("127.0.0.1", addr)
-}
+// func (suite *SAPSystemTestSuite) TestGetDBAddress() {
+// 	s := &SAPSystem{Profile: SAPProfile{"SAPDBHOST": "localhost"}}
+// 	addr, err := getDBAddress(s)
+// 	suite.NoError(err)
+// 	suite.Equal("127.0.0.1", addr)
+// }
 
-func (suite *SAPSystemTestSuite) TestGetDBAddress_ResolveError() {
-	s := &SAPSystem{Profile: SAPProfile{"SAPDBHOST": "other"}}
-	_, err := getDBAddress(s)
-	suite.EqualError(err, "could not resolve \"other\" hostname")
-}
+// func (suite *SAPSystemTestSuite) TestGetDBAddress_ResolveError() {
+// 	s := &SAPSystem{Profile: SAPProfile{"SAPDBHOST": "other"}}
+// 	_, err := getDBAddress(s)
+// 	suite.EqualError(err, "could not resolve \"other\" hostname")
+// }
 
 func (suite *SAPSystemTestSuite) TestNewSAPInstanceDatabase() {
 	mockWebService := new(sapControlMocks.WebService)

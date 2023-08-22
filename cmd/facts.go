@@ -76,7 +76,7 @@ func gather(*cobra.Command, []string) {
 	var argument = viper.GetString("argument")
 	var pluginsFolder = viper.GetString("plugins-folder")
 
-	gathererRegistry := gatherers.NewRegistry(gatherers.StandardGatherers())
+	gathererRegistry := gatherers.NewRegistry(gatherers.StandardGatherers(""))
 
 	log.Info("loading plugins")
 
@@ -130,7 +130,7 @@ func cleanupAndFatal(err error) {
 func list(*cobra.Command, []string) {
 	var pluginsFolder = viper.GetString("plugins-folder")
 
-	gathererRegistry := gatherers.NewRegistry(gatherers.StandardGatherers())
+	gathererRegistry := gatherers.NewRegistry(gatherers.StandardGatherers(""))
 
 	log.Info("loading plugins")
 

@@ -73,15 +73,15 @@ func GetAgentID(fileSystem afero.Fs) (string, error) {
 func (a *Agent) Start(ctx context.Context) error {
 	g, groupCtx := errgroup.WithContext(ctx)
 
-	for _, d := range a.discoveries {
-		dLoop := d
-		g.Go(func() error {
-			log.Infof("Starting %s loop...", dLoop.GetID())
-			a.startDiscoverTicker(groupCtx, dLoop)
-			log.Infof("%s discover loop stopped.", dLoop.GetID())
-			return nil
-		})
-	}
+	// for _, d := range a.discoveries {
+	// 	dLoop := d
+	// 	g.Go(func() error {
+	// 		log.Infof("Starting %s loop...", dLoop.GetID())
+	// 		a.startDiscoverTicker(groupCtx, dLoop)
+	// 		log.Infof("%s discover loop stopped.", dLoop.GetID())
+	// 		return nil
+	// 	})
+	// }
 
 	g.Go(func() error {
 		log.Info("Starting heartbeat loop...")
@@ -90,7 +90,7 @@ func (a *Agent) Start(ctx context.Context) error {
 		return nil
 	})
 
-	gathererRegistry := gatherers.NewRegistry(gatherers.StandardGatherers())
+	gathererRegistry := gatherers.NewRegistry(gatherers.StandardGatherers(a.config.AgentID))
 
 	log.Info("loading plugins")
 
